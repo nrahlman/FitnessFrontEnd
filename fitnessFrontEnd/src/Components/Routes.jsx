@@ -6,15 +6,15 @@ import LogInRegister from "./LogInRegister";
 import MyRoutines from "./MyRoutines";
 import Routines from "./Routines";
 
-const RRoutes = () => {
+const RRoutes = ({token, setToken, user, setUser}) => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/activites" element={<Activities />}></Route>
-        <Route path="/login" element={<LogInRegister />}></Route>
-        <Route path="/myRoutines" element={<MyRoutines />}></Route>
-        <Route path="/routines" element={<Routines />}></Route>
+        <Route path="/" element={<Home token={token} setToken={setToken} user={user} setUser={setUser}/>}></Route>
+        <Route path="/activites" element={<Activities token={token} setToken={setToken} user={user} setUser={setUser}/>}></Route>
+        <Route path="/login" element={<LogInRegister token={token} setToken={setToken} user={user} setUser={setUser}/>}></Route>
+        <Route path="/myRoutines" element={<MyRoutines token={token} setToken={setToken} user={user} setUser={setUser}/>}></Route>
+        <Route path="/routines" element={<Routines token={token} setToken={setToken} user={user} setUser={setUser}/>}></Route>
       </Routes>
     </div>
   );
