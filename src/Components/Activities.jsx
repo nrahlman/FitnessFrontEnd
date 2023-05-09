@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { DisplayActivities } from '../API/activities';
@@ -11,8 +10,8 @@ const navigate=useNavigate()
             
         useEffect(()=>{
              async function getActivities (){
-                const activites= await DisplayActivities()
-            setActivities(activites)}
+                const activities= await DisplayActivities()
+            setActivities(activities)}
             getActivities()
             },[])
             console.log(activities[0])

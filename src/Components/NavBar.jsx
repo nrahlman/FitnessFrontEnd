@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "../App.css";
 
 const NavBar = () => {
+
   const [activeLink, setActiveLink] = useState("");
 
   const handleLinkClick = (link) => {
@@ -51,6 +52,7 @@ const NavBar = () => {
       </ul>
     </section>
   );
+
 
 };
 
