@@ -97,7 +97,4 @@ const Register = ({ setToken, user }) => {
     );
   };
 
-
-
-
 export default Login;
