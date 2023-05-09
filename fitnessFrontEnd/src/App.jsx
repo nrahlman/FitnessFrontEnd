@@ -1,6 +1,6 @@
 import './App.css'
-import NavBar from './NavBar'
-import { RRoutes } from '/src/Routes.jsx'
+import NavBar from './Components/NavBar'
+import RRoutes from './Components/Routes'
 
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <NavBar/>
-<RRoutes/>
+      <RRoutes/>
     </div>
   )
 }
