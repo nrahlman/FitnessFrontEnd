@@ -13,7 +13,7 @@ const RRoutes = ({token, setToken, user, setUser}) => {
     <div>
       <Routes>
         <Route path="/" element={<Home token={token} setToken={setToken} user={user} setUser={setUser}/>}></Route>
-        <Route path="/activites" element={<Activities token={token} setToken={setToken} user={user} setUser={setUser}/>}></Route>
+        <Route path="/activities" element={<Activities token={token} setToken={setToken} user={user} setUser={setUser}/>}></Route>
         <Route path="/postActivity" element={<PostActivity token={token} setToken={setToken} user={user} setUser={setUser}/>}></Route>
         <Route path="/login" element={<LogInRegister token={token} setToken={setToken} user={user} setUser={setUser}/>}></Route>
         <Route path="/myRoutines" element={<MyRoutines token={token} setToken={setToken} user={user} setUser={setUser}/>}></Route>
