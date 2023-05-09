@@ -4,10 +4,16 @@
   scroll-behavior: smooth;
   box-sizing: border-box;
 }
+.App{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #e5e5e5;
+}
 
 .Navbar{
-  background-color: #161616;
-  width: 100%;
+  background-color: #e5e5e5;
+  width: 80%;
   height: 2%;  
   
   display: flex;
@@ -23,6 +29,17 @@
     background-color: transparent;
   }
 }
+
+.logo{
+  background-color: #FC4C02;
+  font-family: 'Pathway Gothic One', Arial, sans-serif!important;
+  color: white;
+  line-height: 3rem;
+  letter-spacing: 1px;
+  padding: 0px 10px;
+  font-size: 30px;
+}
+
 .Links{
   display: flex;
   align-items: center;
@@ -32,19 +49,26 @@
 .Navbar a{
   cursor: pointer;
   text-decoration: none;
-  color: white;
+  color: #141414;
   position: relative;
+  font-family: 'Pathway Gothic One', Arial, sans-serif!important;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 0px 30px;
+  
 
   &:after {
     content: "";
     position: absolute;
     bottom: -5px;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 0%;
     height: 2px;
-    background-color: white;
+    background-color: #FC4C02;
     transition: all 0.3s ease-in-out;
   }
+  
 
   &.active:after {
     width: 100%;
