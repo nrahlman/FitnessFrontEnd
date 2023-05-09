@@ -1,9 +1,7 @@
 const BASE_URL = `https://fitnesstrac-kr.herokuapp.com/api`;
 
 
-
-
-export const registerUser = async () => {
+export const registerUser = async (username, password) => {
     try {
         const response = await fetch(
             `${BASE_URL}/users/register`, {
@@ -19,19 +17,15 @@ export const registerUser = async () => {
             })
         });
         const result = await response.json();
-        // As written below you can log your result
-        // to check what data came back from the above code.
         console.log(result)
-        return result.data.token
+        return result.user.token;
     } catch (err) {
         console.error(err);
     }
 }
 
 
-
-
-export const loginUser = async () => {
+export const loginUser = async (username, password) => {
     try {
         const response = await fetch(`${BASE_URL}/users/login`, {
             method: "POST",
@@ -45,19 +39,19 @@ export const loginUser = async () => {
         });
         const result = await response.json();
         console.log(result);
-        return result.data.token
+        return result.data.token;
     } catch (err) {
         console.error(err);
     }
 }
 
 
-export const fetchMe = async () => {
+export const fetchMe = async (token) => {
     try {
         const response = await fetch(`${BASE_URL}/users/me`, {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${TOKEN_STRING_HERE}`
+                'Authorization': `Bearer ${token}`
             },
         });
         const result = await response.json();
@@ -69,14 +63,12 @@ export const fetchMe = async () => {
 }
 
 
-export const fetchMeByUsername = async () => {
-
-
+export const fetchMyRoutines = async (token) => {
     try {
         const response = await fetch(`${BASE_URL}/users/:username/routines`, {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${TOKEN_STRING_HERE}`
+                'Authorization': `Bearer ${token}`
             },
         });
         const result = await response.json();

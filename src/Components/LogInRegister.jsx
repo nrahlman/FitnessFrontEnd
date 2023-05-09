@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import { loginUser } from "../API/user";
-import { Link } from "react-router-dom";
+import { loginUser, registerUser } from "../API/user";
+import { useNavigate } from "react-router-dom";
 
 
-
-
-const Login = ({ setToken, user }) => {
+const Login = ({ token, setToken, user, setUser }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isLogin, setIsLogin] = useState(true);
+  const navigate = useNavigate();
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = await loginUser(username, password);
+    const token = await registerUser(username, password);
     localStorage.setItem("token", token);
     setToken(token);
     setUsername("");
@@ -20,81 +20,66 @@ const Login = ({ setToken, user }) => {
   };
 
 
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const token = await loginUser(username, password);
+    localStorage.setItem("token", token);
+    setToken(token);
+    navigate("/");
+  };
+
+
+  const toggleForm = () => {
+    setIsLogin(!isLogin);
+  };
+
+
   return (
-    <div className="loginCard">
-      <h2 className="user">{user?.username}</h2>
-      <div className="cardHeader">
-        <div className="log">Log in</div>
-      </div>
-      <div className="loginForm">
-        <form onSubmit={handleSubmit}>
-          <input
-            onChange={(e) => setUsername(e.target.value)}
-            value={username}
-            type="text"
-            placeholder="Username*"
-            className="username"
-          ></input>
-          <input
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-            type="password"
-            placeholder="Password*"
-            className="password"
-          ></input>
-          <button className="loginButton" type="submit">Log in</button>
-        </form>
-        {/* <span>Don't have an account? </span>
-        <Link className="createOne" to="/register">Create one</Link> */}
-      </div>
-    </div>
-  );
-};
-
-
-
-
-const Register = ({ setToken, user }) => {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
- 
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      const token = await registerUser(username, password);
-      localStorage.setItem("token", token);
-      setToken(token);
-      setUsername("");
-      setPassword("");
-    };
- 
-    return (
-      <div className="loginCard">
-        <h2 className="user">{user?.username}</h2>
-        <div className="cardHeader">
-          <div className="log">Create an account</div>
-        </div>
-        <div className="loginForm">
-          <form onSubmit={handleSubmit}>
+    <div className="loginContainer">
+      <div className="loginText">{isLogin ? "Log In" : "Register"}</div>
+      <div>
+        {isLogin ? (
+          <form className="loginForm" onSubmit={handleLogin}>
             <input
               onChange={(e) => setUsername(e.target.value)}
               value={username}
               type="text"
-              placeholder="Username*"
-              className="username"
+              placeholder="Username"
             ></input>
             <input
               onChange={(e) => setPassword(e.target.value)}
               value={password}
               type="password"
-              placeholder="Password*"
-              className="password"
+              placeholder="Password"
             ></input>
-            <button className="loginButton" type="submit">Sign Up</button>
+            <button type="submit">Login</button>
           </form>
-          {/* <Link className="createOne" to="/users/login">Log in</Link> */}
-        </div>
+        ) : (
+          <form className="loginForm" onSubmit={handleSubmit}>
+            <input
+              onChange={(e) => setUsername(e.target.value)}
+              value={username}
+              type="text"
+              placeholder="Username"
+            ></input>
+            <input
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              type="password"
+              placeholder="Password"
+            ></input>
+            <button type="submit">Register</button>
+          </form>
+        )}
       </div>
-    );
-  };
-
+      <div className="flipButton">
+        <button onClick={toggleForm}>
+          {isLogin
+            ? "Don't have an account? Register"
+            : "Already have an account? Log in"}
+        </button>
+      </div>
+    </div>
+  );
+};
 export default Login;
