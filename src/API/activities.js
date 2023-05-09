@@ -1,3 +1,5 @@
+import React from 'react';
+
 const BASE_URL= "https://fitnesstrac-kr.herokuapp.com/api"
 
 export async function DisplayActivities (){
@@ -62,7 +64,7 @@ export async function DisplayActivities (){
 
   export async function GetActivities (){
     try {
-      const response = await fetch(`${BASE_URL}/activities/3/routines`, {
+      const response = await fetch(`${BASE_URL}/activities/:activityId/routines`, {
         headers: {
           'Content-Type': 'application/json',
         },

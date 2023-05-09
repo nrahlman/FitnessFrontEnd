@@ -1,3 +1,8 @@
+import React, { useEffect } from 'react';
+import { useState } from 'react';
+import { PostActivities } from '../API/activities';
+import { useNavigate } from 'react-router-dom';
+
 const PostActivity = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");

@@ -51,6 +51,7 @@ const NavBar = () => {
       </ul>
     </section>
   );
+
 };
 
 export default NavBar;
