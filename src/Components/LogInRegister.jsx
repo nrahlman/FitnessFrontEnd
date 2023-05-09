@@ -17,6 +17,7 @@ const Login = ({ token, setToken, user, setUser }) => {
     setToken(token);
     setUsername("");
     setPassword("");
+    // navigate("/");
   };
 
 
@@ -25,7 +26,9 @@ const Login = ({ token, setToken, user, setUser }) => {
     const token = await loginUser(username, password);
     localStorage.setItem("token", token);
     setToken(token);
-    navigate("/");
+    setUsername("");
+    setPassword("");
+    // navigate("/");
   };
 
 

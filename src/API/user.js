@@ -10,15 +10,13 @@ export const registerUser = async (username, password) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                user: {
-                    username,
-                    password
-                }
+                username,
+                password
             })
         });
         const result = await response.json();
-        console.log(result)
-        return result.user.token;
+        console.log(response, username, password)
+        return result.token;
     } catch (err) {
         console.error(err);
     }
