@@ -76,3 +76,36 @@ export async function DisplayActivities (){
       console.error(err);
     }
   }
+
+  const links = [
+    '/public/images/1.jpg',
+    '/public/images/2.jpg',
+    '/public/images/3.jpg',
+    '/public/images/4.webp',
+    '/public/images/5.jpg',
+    '/public/images/6.jpg',
+    '/public/images/7.avif',
+    '/public/images/8.jpg',
+    '/public/images/9.jpg',
+    '/public/images/10.jpg',
+    '/public/images/11.jpg',
+    '/public/images/12.jpg',
+    '/public/images/13.jpg',
+    '/public/images/14.jpg',
+    '/public/images/15.png',
+    '/public/images/16.jpg',
+    '/public/images/17.jpg',
+    '/public/images/18.jpg',
+    '/public/images/19.jpg',
+    '/public/images/20.jpg',
+    '/public/images/21.jpg',
+    '/public/images/22.avif',
+    '/public/images/23.webp',
+    '/public/images/24.jpg',
+    '/public/images/25.jpg'
+  ];
+  
+  
+  // export the array for use in other modules
+  export { links };
+  
