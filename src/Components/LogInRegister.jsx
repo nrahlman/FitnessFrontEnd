@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { loginUser, registerUser } from "../API/user";
-import { useNavigate } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import '../login.css'
 
 
 const Login = ({ token, setToken, user, setUser }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLogin, setIsLogin] = useState(true);
-  const navigate = useNavigate();
 
 
   const handleSubmit = async (e) => {
@@ -39,7 +38,10 @@ const Login = ({ token, setToken, user, setUser }) => {
 
   return (
     <div className="loginContainer">
-      <div className="loginText">{isLogin ? "Log In" : "Register"}</div>
+    <div className="loginCard">
+      <div className="cardHeader">
+      <div className="log">{isLogin ? "Log In" : "Register"}</div>
+      </div>
       <div>
         {isLogin ? (
           <form className="loginForm" onSubmit={handleLogin}>
@@ -48,14 +50,16 @@ const Login = ({ token, setToken, user, setUser }) => {
               value={username}
               type="text"
               placeholder="Username"
+              className="username"
             ></input>
             <input
               onChange={(e) => setPassword(e.target.value)}
               value={password}
               type="password"
               placeholder="Password"
+              className="password"
             ></input>
-            <button type="submit">Login</button>
+            <button type="submit" className="loginButton" >Login</button>
           </form>
         ) : (
           <form className="loginForm" onSubmit={handleSubmit}>
@@ -64,25 +68,28 @@ const Login = ({ token, setToken, user, setUser }) => {
               value={username}
               type="text"
               placeholder="Username"
+              className="username"
             ></input>
             <input
               onChange={(e) => setPassword(e.target.value)}
               value={password}
               type="password"
               placeholder="Password"
+              className="username"
             ></input>
-            <button type="submit">Register</button>
+            <button type="submit" className="loginButton">Register</button>
           </form>
         )}
-      </div>
-      <div className="flipButton">
+        <div id="createOne">
         <button onClick={toggleForm}>
           {isLogin
-            ? "Don't have an account? Register"
+            ? "Don't have an account? Create one"
             : "Already have an account? Log in"}
         </button>
       </div>
+      </div>
       <ToastContainer />
+    </div>
     </div>
   );
 };
