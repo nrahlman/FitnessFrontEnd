@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { loginUser, registerUser } from "../API/user";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Login = ({ token, setToken, user, setUser }) => {
@@ -17,7 +19,6 @@ const Login = ({ token, setToken, user, setUser }) => {
     setToken(token);
     setUsername("");
     setPassword("");
-    // navigate("/");
   };
 
 
@@ -28,7 +29,6 @@ const Login = ({ token, setToken, user, setUser }) => {
     setToken(token);
     setUsername("");
     setPassword("");
-    // navigate("/");
   };
 
 
@@ -82,6 +82,7 @@ const Login = ({ token, setToken, user, setUser }) => {
             : "Already have an account? Log in"}
         </button>
       </div>
+      <ToastContainer />
     </div>
   );
 };

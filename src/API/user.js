@@ -1,5 +1,6 @@
 const BASE_URL = `https://fitnesstrac-kr.herokuapp.com/api`;
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const registerUser = async (username, password) => {
     try {
@@ -16,9 +17,27 @@ export const registerUser = async (username, password) => {
         });
         const result = await response.json();
         console.log(response, username, password)
-        return result.token;
+        if(result.token) {
+            toast.success(`Welcome to fitMate ${username}!`, {
+                position: "bottom-center",
+                autoClose: 3000,
+                style: {
+                  fontSize: '18px'
+                }
+              });
+            return result.token;
+            } else {
+                throw new Error(result.message);
+            }
     } catch (err) {
         console.error(err);
+        toast.error('Registration failed. Please try again.', {
+            position: "bottom-center",
+            autoClose: 3000,
+            style: {
+              fontSize: '16px'
+            }
+          });
     }
 }
 
@@ -37,9 +56,28 @@ export const loginUser = async (username, password) => {
         });
         const result = await response.json();
         console.log(result);
+        if(result.token) {
+        toast.success(`Welcome back to fitMate ${username}!`, {
+            position: "bottom-center",
+            autoClose: 3000,
+            style: {
+              fontSize: '18px',
+              textAlign: 'center'
+            }
+          });
         return result.token;
+        } else {
+            throw new Error(result.message);
+        }
     } catch (err) {
         console.error(err);
+        toast.error('Log in failed. Please try again.', {
+            position: "bottom-center",
+            autoClose: 3000,
+            style: {
+              fontSize: '16px'
+            }
+          });
     }
 }
 
@@ -83,4 +121,11 @@ export const logout = (setToken, setUser) => {
     localStorage.clear();
     setToken(null);
     setUser({});
+        toast.success(`Logout Successful!`, {
+            position: "bottom-center",
+            autoClose: 3000,
+            style: {
+              fontSize: '16px'
+            }
+          });
 };
