@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
+import { logout } from "../API/user";
 
-const NavBar = () => {
+const NavBar = ({setToken, setUser}) => {
 
   const [activeLink, setActiveLink] = useState("");
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
+  };
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    await logout(setToken, setUser);
   };
 
   return (
@@ -47,8 +52,11 @@ const NavBar = () => {
           className={activeLink === "login" ? "active" : ""}
           onClick={() => handleLinkClick("login")}
         >
-          Login / Register
+          Login
         </Link>
+        <button onClick={handleLogout}>
+          LOGOUT
+        </button>
       </ul>
     </section>
   );
