@@ -89,54 +89,60 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+ 
   
 }
 
-.routines{
-  display: flex;
-  flex-direction: column;
- 
-  width: 80%;
-}
 
 .activitiesContainer{
+
+
   width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
  background-color: white; 
  box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.4);
- 
+
 }
+
 .activitiesBanner{
   font-size: 60px;
   margin-top: 2%;
 }
 .searchContainer{
-  display: flex;
+  height: 40px;
   width: 90%;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
+
+  
+  
 }
 
-.searchContainer input{
- height: 30px;
+#searchInput{
+ 
+ 
  width: 20%;
+ margin: 0px;
  
  
- align-self: flex-end;
+ 
 }
 .searchContainer button{
   background-color: #FC4C02;
   height: 40px;
   display: flex;
   align-items: center;
+  
   color: white;
   
 }
 button {
-  cursor: pointer;
- border: 2px solid #24b4fb;
- background-color: #24b4fb;
+ cursor: pointer;
+ border: 2px solid  #FC4C02; 
+ background-color: #e5e5e5;
  border-radius: 0.9em;
  padding: 0.8em 1.2em 0.8em 1em;
  transition: all ease-in-out 0.2s;
@@ -152,7 +158,8 @@ button span {
 }
 
 button:hover {
- background-color: #0071e2;
+ background-color:  #FC4C02;
+ color: white;
 }
 
 .activities{
@@ -162,7 +169,7 @@ button:hover {
   justify-content: space-between;
   gap: 30px; 
   font-family: 'Pathway Gothic One', Arial, sans-serif!important;
-  padding:  3% 5% 3% 5%;
+  padding:  0% 5% 0% 5%;
 }
 
 
@@ -231,7 +238,7 @@ button:hover {
 }
 
 .pagination{
-  margin-bottom: 5%;
+  margin:3% ;
   display: flex;
   justify-content: space-between;
   gap: 5px;

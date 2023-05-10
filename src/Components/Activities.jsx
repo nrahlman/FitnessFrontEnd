@@ -51,6 +51,7 @@ const Activities = () => {
       <h1 className="activitiesBanner">Activities</h1>
       <div className="searchContainer">
         <input
+        id="searchInput"
           type="text"
           placeholder="Search activities..."
           value={searchQuery}
@@ -73,6 +74,18 @@ const Activities = () => {
             Create Activity
           </span>
         </button>
+      </div>
+      <div className="pagination">
+        {pageNumbers.map((number) => (
+          <button
+            key={number}
+            id={number}
+            onClick={handleClick}
+            className={currentPage === number ? "active" : ""}
+          >
+            {number}
+          </button>
+        ))}
       </div>
       <div className="activities">
         {currentItems.map((activity) => {
