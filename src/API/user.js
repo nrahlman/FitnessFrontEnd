@@ -37,7 +37,7 @@ export const loginUser = async (username, password) => {
         });
         const result = await response.json();
         console.log(result);
-        return result.data.token;
+        return result.token;
     } catch (err) {
         console.error(err);
     }
