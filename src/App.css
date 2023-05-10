@@ -19,7 +19,8 @@
   
   display: flex;
   justify-content: space-between;
-  padding: 20px  ;
+  padding-top: 20px  ;
+  padding-bottom: 20px;
   position: sticky;
   z-index: 9999;
 
@@ -34,6 +35,7 @@
   letter-spacing: 1px;
   padding: 0px 10px;
   font-size: 30px;
+  
 }
 
 .Links{
@@ -74,12 +76,20 @@
     width: 100%;
   }
 }
+.Navbar button {
+  height: 20px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+
+}
 
 
 .body{
   display: flex;
   flex-direction: column;
   align-items: center;
+  
 }
 
 .routines{
@@ -88,16 +98,61 @@
  
   width: 80%;
 }
-*{
-  border: 1px solid black;
-}
+
 .activitiesContainer{
   width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
  background-color: white; 
- padding: 20px;
+ box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.4);
+ 
+}
+.activitiesBanner{
+  font-size: 60px;
+  margin-top: 2%;
+}
+.searchContainer{
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+}
+
+.searchContainer input{
+ height: 30px;
+ width: 20%;
+ 
+ 
+ align-self: flex-end;
+}
+.searchContainer button{
+  background-color: #FC4C02;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  color: white;
+  
+}
+button {
+  cursor: pointer;
+ border: 2px solid #24b4fb;
+ background-color: #24b4fb;
+ border-radius: 0.9em;
+ padding: 0.8em 1.2em 0.8em 1em;
+ transition: all ease-in-out 0.2s;
+ font-size: 16px;
+}
+
+button span {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ color: #fff;
+ font-weight: 600;
+}
+
+button:hover {
+ background-color: #0071e2;
 }
 
 .activities{
@@ -105,19 +160,94 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 10px; 
-
-
+  gap: 30px; 
+  font-family: 'Pathway Gothic One', Arial, sans-serif!important;
+  padding:  3% 5% 3% 5%;
 }
 
-.activity{
-  width: 10%;
-  background-color: #e5e5e5;
-}
+
 .activity img{
-  width: 100px;
+  width: 100%; 
+} 
+
+.activity {
+  width: 20%;
+  height: 300px;
+  position: relative; 
+  background: mediumturquoise;
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.4);
+  font-size: 25px;
+  font-weight: bold;
+  border-radius: 15px;
+  
 }
 
+.activity::before,
+.activity::after {
+  position: absolute;
+  content: "";
+  width: 20%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: #e5e5e5;
+  transition: all 0.5s;
+}
+
+.activity::before {
+  top: 0;
+  right: 0;
+  border-radius: 0 5px 0 100%;
+}
+
+.activity::after {
+  bottom: 0;
+  left: 0;
+  border-radius: 0 100%  0 15px;
+}
+
+.activity:hover::before,
+.activity:hover:after {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  transition: all 0.5s;
+}
+
+.activity:hover:after {
+  content: var(--description);
+}
+.activityTitle{
+ 
+  padding-right: 20%;
+ 
+  background-color: #e5e5e579;
+  
+}
+
+.pagination{
+  margin-bottom: 5%;
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  
+}
+.pagination button{
+  font-size: 16px;
+  padding: 10px;
+  background-color: #e5e5e5;
+  border: none;
+  cursor: pointer;
+}
+.pagination button.active {
+  background-color: #FC4C02;
+  color: white;
+}
 .read-the-docs {
   color: #888;
 }
