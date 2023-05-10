@@ -57,7 +57,7 @@ const Activities = () => {
           value={searchQuery}
           onChange={handleSearchChange}
         />
-        <button>
+        <button onClick={()=>navigate(`/postActivity`)}>
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -97,11 +97,14 @@ const Activities = () => {
                 backgroundImage: `url(${
                   links[Math.floor(Math.random() * 25)]
                 })`,
-                "--description": `"${activity.description}"`,
+                "--description": `"${activity.description} "`,
+                
               }}
             >
               <p className="activityTitle">{activity.name}</p>
+              <button onClick={()=>navigate(`/patchActivity/${activity.id}`)}>Edit</button>
             </div>
+            
           );
         })}
       </div>
@@ -116,7 +119,9 @@ const Activities = () => {
             {number}
           </button>
         ))}
+        
       </div>
+      
     </div>
   );
 };

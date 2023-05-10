@@ -1,5 +1,3 @@
-import React from 'react';
-
 const BASE_URL= "https://fitnesstrac-kr.herokuapp.com/api"
 
 export async function DisplayActivities (){
@@ -19,16 +17,19 @@ export async function DisplayActivities (){
     }
   }
 
-  export async function PostActivities (){
+  // @param {string} token
+ 
+  export async function PostActivities (token, name, description){
     try {
       const response = await fetch(`${BASE_URL}/activities`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
-          name: 'Running',
-          description: 'Keep on running!'
+          name,
+          description
         }) 
       });
   
@@ -40,17 +41,18 @@ export async function DisplayActivities (){
       console.error(err);
     }
   }
-  export async function PatchActivities (){
+  export async function PatchActivities (Id, token, name, description){
+    console.log(Id, token, name, description)
     try {
-      const response = await fetch(`${BASE_URL}/activities`, {
+      const response = await fetch(`${BASE_URL}/activities/${Id}`, {
         headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${TOKEN_STRING_HERE}`
+        'Authorization': `Bearer ${token}`
         },
         method: "PATCH",
         body: JSON.stringify({
-          name: 'Running',
-          description: 'Keep on running, til you drop!'
+          name,
+          description
         })
       });
   
@@ -62,20 +64,20 @@ export async function DisplayActivities (){
       }
   }
 
-  export async function GetActivities (){
-    try {
-      const response = await fetch(`${BASE_URL}/activities/:activityId/routines`, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const result = await response.json();
-      console.log(result);
-      return result
-    } catch (err) {
-      console.error(err);
-    }
-  }
+  // export async function GetActivities (){
+  //   try {
+  //     const response = await fetch(`${BASE_URL}/activities/:activityId/routines`, {
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //     });
+  //     const result = await response.json();
+  //     console.log(result);
+  //     return result
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // }
 
   const links = [
     '/images/1.jpg',
