@@ -6,11 +6,12 @@ import LogInRegister from "./LogInRegister";
 import MyRoutines from "./MyRoutines";
 import PostActivity from "./PostActivity"
 import Routines from "./Routines";
+import '../App.css'
 
 
 const RRoutes = ({token, setToken, user, setUser}) => {
   return (
-    <div>
+    <div className="body">
       <Routes>
         <Route path="/" element={<Home token={token} setToken={setToken} user={user} setUser={setUser}/>}></Route>
         <Route path="/activities" element={<Activities token={token} setToken={setToken} user={user} setUser={setUser}/>}></Route>
