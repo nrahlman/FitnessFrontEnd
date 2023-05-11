@@ -149,6 +149,20 @@ button:hover {
   font-family: "Pathway Gothic One", Arial, sans-serif !important;
   padding: 0% 5% 0% 5%;
 }
+.activity button{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 10px;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.activity:hover button {
+  display: flex;
+}
 
 .activity img {
   width: 100%;
@@ -160,7 +174,9 @@ button:hover {
   position: relative;
   background: mediumturquoise;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.4);
   font-size: 25px;
   font-weight: bold;
@@ -180,6 +196,9 @@ button:hover {
   font-weight: bold;
   background-color: #e5e5e5;
   transition: all 0.5s;
+  button{
+    display: ;
+  }
 }
 
 .activity::before {
@@ -204,6 +223,7 @@ button:hover {
 
 .activity:hover:after {
   content: var(--description);
+
   font-size: 16px;
   padding: 5px;
 }
