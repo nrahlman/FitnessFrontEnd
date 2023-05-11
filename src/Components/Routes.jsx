@@ -20,7 +20,8 @@ const RRoutes = ({token, setToken, user, setUser}) => {
         <Route path="/patchActivity/:Id" element={<UpdateActivities token={token} setToken={setToken} user={user} setUser={setUser}/>}></Route>
         <Route path="/login" element={<LogInRegister token={token} setToken={setToken} user={user} setUser={setUser}/>}></Route>
         <Route path="/myRoutines" element={<MyRoutines token={token} setToken={setToken} user={user} setUser={setUser}/>}></Route>
-        <Route path="/routines" element={<Routines token={token} setToken={setToken} user={user} setUser={setUser}/>}></Route>
+        <Route path="/routines" element={<Routines  token={token} setToken={setToken} user={user} setUser={setUser} />} state={{}} />
+
       </Routes>
     </div>
   );

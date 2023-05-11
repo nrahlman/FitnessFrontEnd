@@ -147,6 +147,10 @@ button:hover {
   background-color: #fc4c02;
   color: white;
 }
+.routineButton{
+  left: 0;
+  width: 50%
+}
 
 .activities {
   display: flex;

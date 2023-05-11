@@ -4,7 +4,6 @@ import "../App.css";
 import { logout } from "../API/user";
 
 const NavBar = ({ user, setToken, setUser }) => {
-
   const [activeLink, setActiveLink] = useState("");
 
   const handleLinkClick = (link) => {
@@ -27,12 +26,16 @@ const NavBar = ({ user, setToken, setUser }) => {
           Home page
         </Link>
         <Link
-          to="/routines"
+          to={{
+            pathname: "/routines",
+            state: {},
+          }}
           className={activeLink === "routines" ? "active" : ""}
           onClick={() => handleLinkClick("routines")}
         >
           Routines
         </Link>
+
         <Link
           to="/activities"
           className={activeLink === "activities" ? "active" : ""}
@@ -58,12 +61,7 @@ const NavBar = ({ user, setToken, setUser }) => {
             Login
           </Link>
         )}
-        {user.username ? (
-          <button onClick={handleLogout}>
-            LOGOUT
-          </button>
-        ) : null}
-
+        {user.username ? <button onClick={handleLogout}>LOGOUT</button> : null}
       </ul>
     </section>
   );

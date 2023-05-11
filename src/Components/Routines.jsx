@@ -1,21 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { getPublicRoutines } from "../API/routines";
 import { useNavigate } from "react-router-dom";
-
+import { useLocation } from "react-router-dom";
 import "../Styles/Routines.css";
-import { links } from "../API/activities";
+import { GetRoutines, links } from "../API/activities";
 
 const Routines = () => {
+    const location = useLocation();
+    const numberStuff = location.state?.numberStuff || 0;
   const [routines, setRoutines] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(15);
   const navigate = useNavigate();
-
+    console.log(numberStuff)
   useEffect(() => {
     async function fetchData() {
-      const routinesData = await getPublicRoutines();
-      setRoutines(routinesData);
+        if (numberStuff === 0) {
+            const routinesData = await getPublicRoutines();
+    
+            setRoutines(routinesData);
+        }
+        else{
+            const routinesData = await GetRoutines(numberStuff);
+            setRoutines(routinesData);
+
+        }
+      
     }
     fetchData();
   }, []);

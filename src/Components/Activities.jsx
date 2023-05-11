@@ -58,6 +58,7 @@ const Activities = () => {
           onChange={handleSearchChange}
         />
         <button onClick={()=>navigate(`/postActivity`)}>
+      
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -103,6 +104,7 @@ const Activities = () => {
             >
               <p className="activityTitle">{activity.name}</p>
               <button onClick={()=>navigate(`/patchActivity/${activity.id}`)}>Edit</button>
+              <button className="routineButton" onClick={() => navigate(`/routines`, { state: { numberStuff: activity.id } })}>Routines</button>
             </div>
             
           );

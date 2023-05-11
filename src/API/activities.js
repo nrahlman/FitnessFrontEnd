@@ -63,21 +63,21 @@ export async function DisplayActivities (){
       console.error(err);
       }
   }
+  export async function GetRoutines (Id){
+    try {
+      const response = await fetch(`${BASE_URL}/activities/${Id}/routines`, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const result = await response.json();
+      console.log(result);
+      return result
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
-  // export async function GetActivities (){
-  //   try {
-  //     const response = await fetch(`${BASE_URL}/activities/:activityId/routines`, {
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //     });
-  //     const result = await response.json();
-  //     console.log(result);
-  //     return result
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // }
 
   const links = [
     '/images/1.jpg',
