@@ -116,6 +116,7 @@ const Routines = () => {
                       }}
                     >
                       <p className="activityTitle">{activity.name}</p>
+                      <p className="activityDirections">{activity.count} Reps X {activity.duration} mins</p>
                     </li>
                   );
                 })}
