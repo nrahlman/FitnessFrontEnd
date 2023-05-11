@@ -85,5 +85,6 @@
   
   #createOne:hover button{
     text-decoration: underline;
+    color: black;
   }
   

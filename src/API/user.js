@@ -18,20 +18,13 @@ export const registerUser = async (username, password) => {
         const result = await response.json();
         console.log(response, username, password)
         if(result.token) {
-            toast.success(`Welcome to fitMate ${username}!`, {
-                position: "bottom-center",
-                autoClose: 3000,
-                style: {
-                  fontSize: '18px'
-                }
-              });
             return result.token;
             } else {
                 throw new Error(result.message);
             }
     } catch (err) {
         console.error(err);
-        toast.error('Registration failed. Please try again.', {
+        toast.error(err.message || 'Registration failed. Please try again.', {
             position: "bottom-center",
             autoClose: 3000,
             style: {
@@ -57,21 +50,13 @@ export const loginUser = async (username, password) => {
         const result = await response.json();
         console.log(result);
         if(result.token) {
-        toast.success(`Welcome back to fitMate ${username}!`, {
-            position: "bottom-center",
-            autoClose: 3000,
-            style: {
-              fontSize: '18px',
-              textAlign: 'center'
-            }
-          });
         return result.token;
         } else {
             throw new Error(result.message);
         }
     } catch (err) {
         console.error(err);
-        toast.error('Log in failed. Please try again.', {
+        toast.error(err.message || 'Log in failed. Please try again.', {
             position: "bottom-center",
             autoClose: 3000,
             style: {
@@ -99,9 +84,9 @@ export const fetchMe = async (token) => {
 }
 
 
-export const fetchMyRoutines = async (token) => {
+export const fetchMyRoutines = async (token, username) => {
     try {
-        const response = await fetch(`${BASE_URL}/users/:username/routines`, {
+        const response = await fetch(`${BASE_URL}/users/${username}/routines`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
@@ -121,11 +106,5 @@ export const logout = (setToken, setUser) => {
     localStorage.clear();
     setToken(null);
     setUser({});
-        toast.success(`Logout Successful!`, {
-            position: "bottom-center",
-            autoClose: 3000,
-            style: {
-              fontSize: '16px'
-            }
-          });
+
 };
