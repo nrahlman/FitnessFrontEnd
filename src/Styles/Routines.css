@@ -54,6 +54,7 @@
 .exercises {
   display: flex;
   flex-wrap: wrap;
+  
 
 }
 .exercises li {
@@ -61,7 +62,7 @@
   height: 10rem;
   width: 15%;
   
-  margin: 5px;
+  margin: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -132,4 +133,13 @@
   background-color: #e5e5e579;
   padding: 5px;
   width: 100%;
+}
+.activityDirections{
+    position: absolute;
+    background-color: #e5e5e5ec;
+    bottom: 0;
+    left: 0;
+    padding: 5px;
+    font-size: 20px;
+    border-radius: 0px 15px 0px 15px;
 }
