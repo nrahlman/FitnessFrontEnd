@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { getPublicRoutines } from "../API/routines";
 import { useNavigate } from "react-router-dom";
+
 import "../Styles/Routines.css";
+import { links } from "../API/activities";
 
 const Routines = () => {
   const [routines, setRoutines] = useState([]);
@@ -84,31 +86,41 @@ const Routines = () => {
         {currentItems.map((routine) => {
           return (
             <div className="routine" key={routine.id}>
-                <div className="routinesHeader">
-              <h2>{routine.name} <span className="author">by: {routine.creatorName}</span></h2>
-              <button onClick={() => navigate(`/routines/${routine.id}`)}>
-                Start Workout
-              </button>
+              <div className="routinesHeader">
+                <h2>
+                  {routine.name}{" "}
+                  <span className="author">by: {routine.creatorName}</span>
+                </h2>
+                <button onClick={() => navigate(`/routines/${routine.id}`)}>
+                  Start Workout
+                </button>
               </div>
-              
-              <p> <span className="bold"> Goal:</span> {routine.goal}</p>
-             
+
+              <p>
+                {" "}
+                <span className="bold"> Goal:</span> {routine.goal}
+              </p>
+
               <h4>Exercises:</h4>
               <ul className="exercises">
                 {routine.activities.map((activity) => {
                   return (
-                    <li key={activity.id}>
-                      <h4>{activity.name}</h4>
-                      {/* <p>Description: {activity.description}</p> */}
-                      <div className="">
-                      <p>Count: {activity.count}</p>
-                      <p>Rep: {activity.duration} mins</p>
-                      </div>
+                    <li
+                      className="activityRoutines"
+                      key={activity.id}
+                      style={{
+                        backgroundImage: `url(${
+                          links[Math.floor(Math.random() * 25)]
+                        })`,
+                        "--description": `"${activity.description}"`,
+                      }}
+                    >
+                      <p className="activityTitle">{activity.name}</p>
                     </li>
                   );
                 })}
               </ul>
-             
+              
             </div>
           );
         })}
