@@ -34,10 +34,19 @@
   font-size: 30px;
 }
 
-.Links {
+.Links{
   display: flex;
   align-items: center;
   gap: 25px;
+}
+.username{
+  color: #141414;
+  position: relative;
+  font-family: "Pathway Gothic One", Arial, sans-serif !important;
+  letter-spacing: 1px;
+  /* text-transform: uppercase; */
+  padding: 0px 30px;
+  font-weight: bold;
 }
 .Navbar a {
   cursor: pointer;

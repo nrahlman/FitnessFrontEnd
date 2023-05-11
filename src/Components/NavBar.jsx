@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
 import { logout } from "../API/user";
 
-const NavBar = ({setToken, setUser}) => {
+const NavBar = ({ user, setToken, setUser }) => {
 
   const [activeLink, setActiveLink] = useState("");
 
@@ -47,21 +47,26 @@ const NavBar = ({setToken, setUser}) => {
         >
           My Routines
         </Link>
-        <Link
-          to="/login"
-          className={activeLink === "login" ? "active" : ""}
-          onClick={() => handleLinkClick("login")}
-        >
-          Login
-        </Link>
-        <button onClick={handleLogout}>
-          LOGOUT
-        </button>
+        {user.username ? (
+          <p className="username">{user.username}</p>
+        ) : (
+          <Link
+            to="/login"
+            className={activeLink === "login" ? "active" : ""}
+            onClick={() => handleLinkClick("login")}
+          >
+            Login
+          </Link>
+        )}
+        {user.username ? (
+          <button onClick={handleLogout}>
+            LOGOUT
+          </button>
+        ) : null}
+
       </ul>
     </section>
   );
-
-
 };
 
 export default NavBar;

@@ -3,13 +3,15 @@ import { loginUser, registerUser } from "../API/user";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../login.css'
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 const Login = ({ token, setToken, user, setUser }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLogin, setIsLogin] = useState(true);
-
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,29 +22,29 @@ const Login = ({ token, setToken, user, setUser }) => {
     setPassword("");
   };
 
-
   const handleLogin = async (e) => {
+
     e.preventDefault();
     const token = await loginUser(username, password);
     localStorage.setItem("token", token);
     setToken(token);
     setUsername("");
     setPassword("");
+    if (token) {
+      navigate("/myRoutines");
+    }
   };
-
 
   const toggleForm = () => {
     setIsLogin(!isLogin);
   };
 
-
   return (
     <div className="loginContainer">
-    <div className="loginCard">
-      <div className="cardHeader">
-      <div className="log">{isLogin ? "Log In" : "Register"}</div>
-      </div>
-      <div>
+      <div className="loginCard">
+        <div className="cardHeader">
+          <div className="log">{isLogin ? "Log In" : "Register"}</div>
+        </div>
         {isLogin ? (
           <form className="loginForm" onSubmit={handleLogin}>
             <input
@@ -59,7 +61,9 @@ const Login = ({ token, setToken, user, setUser }) => {
               placeholder="Password"
               className="password"
             ></input>
-            <button type="submit" className="loginButton" >Login</button>
+            <button type="submit" className="loginButton">
+              Login
+            </button>
           </form>
         ) : (
           <form className="loginForm" onSubmit={handleSubmit}>
@@ -77,20 +81,22 @@ const Login = ({ token, setToken, user, setUser }) => {
               placeholder="Password"
               className="username"
             ></input>
-            <button type="submit" className="loginButton">Register</button>
+            <button type="submit" className="loginButton">
+              Register
+            </button>
           </form>
         )}
         <div id="createOne">
-        <button onClick={toggleForm}>
-          {isLogin
-            ? "Don't have an account? Create one"
-            : "Already have an account? Log in"}
-        </button>
-      </div>
+          <button onClick={toggleForm}>
+            {isLogin
+              ? "Don't have an account? Create one"
+              : "Already have an account? Log in"}
+          </button>
+        </div>
       </div>
       <ToastContainer />
     </div>
-    </div>
   );
 };
+
 export default Login;
