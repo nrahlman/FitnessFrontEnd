@@ -6,9 +6,9 @@ const Home = () => {
       <div className="homeTitle">
         <h1>Experience the Best Workouts for a Stronger, Healthier You</h1>
         <p>
-          FITMATE offers a variety of fitness classes to help you achieve
+          FITMATE offers a variety of fitness routines to help you achieve
           your fitness goals. Whether you want to build strength, improve
-          endurance, or get in better shape, there is a class that suits your
+          endurance, or get in better shape, there is a routine that suits your
           needs.
         </p>
       </div>
@@ -33,9 +33,9 @@ const Home = () => {
             <h2>YOGA</h2>{" "}
             <p>
               Combine physical postures, breathing techniques, and meditation
-              into a single class to improve your body's movement, posture, and
+              into a single routine to improve your body's movement, posture, and
               physical fitness. Whether taking a Power Yoga or Restorative Yoga
-              class, our classes will satisfy both first times and experienced
+              routine, our rountines will satisfy both first times and experienced
               alike.
             </p>
           </div>
@@ -45,7 +45,7 @@ const Home = () => {
             <h2>CYCLE</h2>{" "}
             <p>
               The ultimate conditioning and endurance workout on bikes. Our
-              cycle classes will constantly challenge your fitness level and
+              cycle rountines will constantly challenge your fitness level and
               push you to reach new heights.
             </p>
           </div>
@@ -67,8 +67,8 @@ const Home = () => {
           <div className="homeLeft">
             <h2>SCULPT</h2>{" "}
             <p>
-              Get ready to Sculpt your body with our newest class at Sweat:
-              Sculpt! This class is designed to target and tone all of the
+              Get ready to Sculpt your body with our newest rountine at FITMATE:
+              Sculpt! This rountine is designed to target and tone all of the
               different muscles in your core and body. You'll be working hard,
               but you'll have plenty of fun while doing it – that's what makes
               Sculpt such an incredible way to start improving your physical
@@ -84,7 +84,7 @@ const Home = () => {
             <p>
               Are you looking for the perfect combination of a challenging
               workout and exhilarating fun? Look no further than Power Cycle at
-              Sweat! Our unique class combines 30 minutes of indoor cycling with
+              Sweat! Our unique routine combines 30 minutes of indoor cycling with
               30 minutes of weights and total body cardio movements for one
               amazing hour of exercise.{" "}
             </p>
