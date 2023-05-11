@@ -7,6 +7,7 @@ import MyRoutines from "./MyRoutines";
 import PostActivity from "./PostActivity"
 import Routines from "./Routines";
 import '../App.css'
+import UpdateActivities from "./UpdateActivities";
 
 
 const RRoutes = ({token, setToken, user, setUser}) => {
@@ -16,6 +17,7 @@ const RRoutes = ({token, setToken, user, setUser}) => {
         <Route path="/" element={<Home token={token} setToken={setToken} user={user} setUser={setUser}/>}></Route>
         <Route path="/activities" element={<Activities token={token} setToken={setToken} user={user} setUser={setUser}/>}></Route>
         <Route path="/postActivity" element={<PostActivity token={token} setToken={setToken} user={user} setUser={setUser}/>}></Route>
+        <Route path="/patchActivity/:Id" element={<UpdateActivities token={token} setToken={setToken} user={user} setUser={setUser}/>}></Route>
         <Route path="/login" element={<LogInRegister token={token} setToken={setToken} user={user} setUser={setUser}/>}></Route>
         <Route path="/myRoutines" element={<MyRoutines token={token} setToken={setToken} user={user} setUser={setUser}/>}></Route>
         <Route path="/routines" element={<Routines token={token} setToken={setToken} user={user} setUser={setUser}/>}></Route>

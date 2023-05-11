@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import { PatchActivities } from '../API/activities';
+import { useParams, useNavigate } from 'react-router-dom';
 
-const PatchActivities = ({ name, description }) => {
-  const [name, setName] = useState(currentActivity.name);
-  const [description, setDescription] = useState(currentActivity.description);
+const UpdateActivities = ({ token }) => {
+  const navigate=useNavigate()
+  const {Id}= useParams()
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await PatchActivities(name, description);
-    onPostUpdated(index);
+    await PatchActivities(Id, token, name, description);
+    navigate("/activities");
   };
 
   return (
@@ -28,4 +31,4 @@ const PatchActivities = ({ name, description }) => {
   );
 };
 
-export default PatchActivities;
+export default UpdateActivities;

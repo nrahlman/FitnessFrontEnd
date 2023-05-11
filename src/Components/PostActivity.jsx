@@ -1,20 +1,19 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { PostActivities } from '../API/activities';
 import { useNavigate } from 'react-router-dom';
 
-const PostActivity = () => {
+const PostActivity = ({token}) => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [descritpion, setDescription] = useState("");
-
+  
   return (
     <div>
       <form
         onSubmit={async (e) => {
           e.preventDefault();
-          await PostActivities(name, breed);
-          navigate("/");
+          await PostActivities(token, name, descritpion);
+          navigate("/activities");
         }}
       >
         <input
@@ -27,7 +26,7 @@ const PostActivity = () => {
           onChange={(e) => setDescription(e.target.value)}
           value={descritpion}
           type="text"
-          placeholder="Breed"
+          placeholder="Description"
         />
         <button type="submit">Create Activity</button>
       </form>
