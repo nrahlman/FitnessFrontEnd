@@ -7,7 +7,7 @@ const Routines = () => {
   const [routines, setRoutines] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [itemsPerPage, setItemsPerPage] = useState(15);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -84,25 +84,31 @@ const Routines = () => {
         {currentItems.map((routine) => {
           return (
             <div className="routine" key={routine.id}>
-              <h2>{routine.name}</h2>
-              <p>Goal: {routine.goal}</p>
-              <p>Created by: {routine.creatorName}</p>
-              <p>Activities:</p>
-              <ul>
+                <div className="routinesHeader">
+              <h2>{routine.name} <span className="author">by: {routine.creatorName}</span></h2>
+              <button onClick={() => navigate(`/routines/${routine.id}`)}>
+                Start Workout
+              </button>
+              </div>
+              
+              <p> <span className="bold"> Goal:</span> {routine.goal}</p>
+             
+              <h4>Exercises:</h4>
+              <ul className="exercises">
                 {routine.activities.map((activity) => {
                   return (
                     <li key={activity.id}>
-                      <p>Name: {activity.name}</p>
-                      <p>Description: {activity.description}</p>
-                      <p>Duration: {activity.duration} minutes</p>
+                      <h4>{activity.name}</h4>
+                      {/* <p>Description: {activity.description}</p> */}
+                      <div className="">
                       <p>Count: {activity.count}</p>
+                      <p>Rep: {activity.duration} mins</p>
+                      </div>
                     </li>
                   );
                 })}
               </ul>
-              <button onClick={() => navigate(`/routines/${routine.id}`)}>
-                See Details
-              </button>
+             
             </div>
           );
         })}
