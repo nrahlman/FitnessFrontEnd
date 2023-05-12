@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import { DisplayActivities, links } from "../API/activities";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
+import UpdateActivities from "./UpdateActivities";
 
-const Activities = () => {
+const Activities = ({token}) => {
   const [activities, setActivities] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(24);
   const [searchQuery, setSearchQuery] = useState("");
+  const [modalActivityId, setModalActivityId] = useState(null);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -51,14 +54,13 @@ const Activities = () => {
       <h1 className="activitiesBanner">Activities</h1>
       <div className="searchContainer">
         <input
-        id="searchInput"
+          id="searchInput"
           type="text"
           placeholder="Search activities..."
           value={searchQuery}
           onChange={handleSearchChange}
         />
-        <button onClick={()=>navigate(`/postActivity`)}>
-      
+        <button onClick={() => navigate(`/postActivity`)}>
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -89,6 +91,18 @@ const Activities = () => {
         ))}
       </div>
       <div className="activities">
+        {modalActivityId && (
+          <div className="modal">
+            <div className="modal-content">
+              <UpdateActivities
+                token={token}
+                id={modalActivityId}
+                onClose={() => setModalActivityId(null)}
+              />
+            </div>
+          </div>
+        )}
+
         {currentItems.map((activity) => {
           return (
             <div
@@ -99,14 +113,22 @@ const Activities = () => {
                   links[Math.floor(Math.random() * 25)]
                 })`,
                 "--description": `"${activity.description} "`,
-                
               }}
             >
               <p className="activityTitle">{activity.name}</p>
-              <button onClick={()=>navigate(`/patchActivity/${activity.id}`)}>Edit</button>
-              <button className="routineButton" onClick={() => navigate(`/routines`, { state: { numberStuff: activity.id } })}>Routines</button>
+              <button onClick={() => setModalActivityId(activity.id)}>
+                Edit
+              </button>
+
+              <button
+                className="routineButton"
+                onClick={() =>
+                  navigate(`/routines`, { state: { numberStuff: activity.id } })
+                }
+              >
+                Routines
+              </button>
             </div>
-            
           );
         })}
       </div>
@@ -121,9 +143,7 @@ const Activities = () => {
             {number}
           </button>
         ))}
-        
       </div>
-      
     </div>
   );
 };

@@ -1,0 +1,42 @@
+.update-post {
+  z-index: 5;
+
+  background-color: #e5e5e5;
+}
+.updateHeader{
+    display: flex;
+    justify-content: space-between;
+}
+
+.close-button {
+  color: #fc4c02;
+  cursor: pointer;
+  font-size: 25px;
+  font-weight: 600;
+  transition: color 0.2s ease-in-out;
+}
+
+.close-button:hover {
+  color: #0a010f;
+}
+.updateForm {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+  align-items: center;
+}
+
+.updateForm label {
+  grid-column: 1 / 2;
+}
+
+.updateForm input {
+  grid-column: 2 / 3;
+}
+.updateForm button[type="submit"] {
+  grid-column: 2 / 3;
+}
+.updateDescription{
+    padding: 5px;
+   
+}

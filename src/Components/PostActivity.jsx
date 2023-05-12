@@ -22,6 +22,7 @@ const PostActivity = ({token}) => {
           type="text"
           placeholder="Name"
         />
+        
         <input
           onChange={(e) => setDescription(e.target.value)}
           value={descritpion}

@@ -1,29 +1,42 @@
-import React, { useState } from 'react';
-import { PatchActivities } from '../API/activities';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { PatchActivities } from "../API/activities";
 
-const UpdateActivities = ({ token }) => {
-  const navigate=useNavigate()
-  const {Id}= useParams()
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
+import "../Styles/Update.css";
 
+const UpdateActivities = ({ token, id, onClose }) => {
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await PatchActivities(Id, token, name, description);
-    navigate("/activities");
+    await PatchActivities(id, token, name, description);
+    onClose();
   };
 
   return (
     <div className="update-post">
-      <h2>Update Post</h2>
-      <form onSubmit={handleSubmit}>
-        <label>Name:</label>
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+      <div className="updateHeader">
+        <h2>Update Post {id}</h2>
+        <div className="close-button" onClick={onClose}>
+          X
+        </div>
+      </div>
+      <form className="updateForm" onSubmit={handleSubmit}>
+        <label>New Activity Name:</label>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
 
-        <label>Description:</label>
-        <textarea value={description} onChange={(e) => setDescription(e.target.value)} required></textarea>
+        <label>New Description:</label>
+        <textarea
+          className="updateDescription"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          required
+        ></textarea>
 
         <button type="submit">Update Post</button>
       </form>
