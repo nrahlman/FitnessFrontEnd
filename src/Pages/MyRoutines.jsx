@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { fetchMe, fetchMyRoutines } from "../API/user";
 import { GetRoutines, links, DisplayActivities } from "../API/activities";
 import { addActivityToRoutine } from "../API/routines";
+import "../Styles/myRoutines.css";
+import "../Styles/Routines.css";
+
 function MyRoutines({ user, setUser }) {
   const [routines, setRoutines] = useState([]);
   const [activities, setActivities] = useState([]);
@@ -68,28 +71,30 @@ function MyRoutines({ user, setUser }) {
         return (
           <div className="routine" key={routine.id}>
             <div className="routine-header">
-              <h2>
-                {routine.name}{" "}
-                <span className="routine-author">
-                  by: {routine.creatorName}
-                </span>
-              </h2>
-              <button onClick={() => handleAddActivity(routine.id)}>
-                Add New Activity
-              </button>
+              <h2>{routine.name}</h2>
+              <h4>Exercises:</h4>
             </div>
-            <ul className="activity-list">
-              {routine.activities.map((activity) => {
-                return (
-                  <li key={activity.id}>
-                    <h3>{activity.name}</h3>
-                    <p>{activity.description}</p>
-                    <p>Count: {activity.count}</p>
-                    <p>Duration: {activity.duration}</p>
-                  </li>
-                );
-              })}
-            </ul>
+            <ul className="exercises">
+                {routine.activities.map((activity) => {
+                  return (
+                    <li
+                      className="activityRoutines"
+                      key={activity.id}
+                      style={{
+                        backgroundImage: `url(${
+                          links[Math.floor(Math.random() * 25)]
+                        })`,
+                        "--description": `"${activity.description}"`,
+                      }}
+                    >
+                      <p className="activityTitle">{activity.name}</p>
+                      <p className="activityDirections">
+                        {activity.count} Reps X {activity.duration} mins
+                      </p>
+                    </li>
+                  );
+                })}
+              </ul>
             <div className="select-activity">
               <label htmlFor="activity-select">Select Activity:</label>
               <select
