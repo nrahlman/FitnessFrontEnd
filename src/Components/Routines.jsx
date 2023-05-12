@@ -4,29 +4,29 @@ import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import "../Styles/Routines.css";
 import { GetRoutines, links } from "../API/activities";
+import AddRoutine from "./AddRoutine";
 
-const Routines = () => {
-    const location = useLocation();
-    const numberStuff = location.state?.numberStuff || 0;
+const Routines = ({ token }) => {
+  const location = useLocation();
+  const numberStuff = location.state?.numberStuff || 0;
   const [routines, setRoutines] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(15);
   const navigate = useNavigate();
-    console.log(numberStuff)
+  const [modalActivityId, setModalActivityId] = useState(null);
+  const [showAddRoutineModal, setShowAddRoutineModal] = useState(false);
+
   useEffect(() => {
     async function fetchData() {
-        if (numberStuff === 0) {
-            const routinesData = await getPublicRoutines();
-    
-            setRoutines(routinesData);
-        }
-        else{
-            const routinesData = await GetRoutines(numberStuff);
-            setRoutines(routinesData);
+      if (numberStuff === 0) {
+        const routinesData = await getPublicRoutines();
 
-        }
-      
+        setRoutines(routinesData);
+      } else {
+        const routinesData = await GetRoutines(numberStuff);
+        setRoutines(routinesData);
+      }
     }
     fetchData();
   }, []);
@@ -53,6 +53,10 @@ const Routines = () => {
     pageNumbers.push(i);
   }
 
+  const updateRoutines = (newRoutine) => {
+    setRoutines([...routines, newRoutine]);
+  };
+
   return (
     <div className="routinesContainer">
       <h1 className="routinesBanner">Public Routines</h1>
@@ -64,7 +68,7 @@ const Routines = () => {
           value={searchQuery}
           onChange={handleSearchChange}
         />
-        <button>
+        <button onClick={() => setShowAddRoutineModal(true)}>
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -94,6 +98,18 @@ const Routines = () => {
         ))}
       </div>
       <section className="routines">
+        {showAddRoutineModal && (
+          <div className="modal">
+            <div className="modal-content">
+              <AddRoutine
+                token={token}
+                updateRoutines={updateRoutines}
+                onClose={() => setShowAddRoutineModal(false)}
+              />
+            </div>
+          </div>
+        )}
+       
         {currentItems.map((routine) => {
           return (
             <div className="routine" key={routine.id}>
@@ -106,12 +122,12 @@ const Routines = () => {
                   Start Workout
                 </button>
               </div>
-
+  
               <p>
                 {" "}
                 <span className="bold"> Goal:</span> {routine.goal}
               </p>
-
+  
               <h4>Exercises:</h4>
               <ul className="exercises">
                 {routine.activities.map((activity) => {
@@ -127,12 +143,13 @@ const Routines = () => {
                       }}
                     >
                       <p className="activityTitle">{activity.name}</p>
-                      <p className="activityDirections">{activity.count} Reps X {activity.duration} mins</p>
+                      <p className="activityDirections">
+                        {activity.count} Reps X {activity.duration} mins
+                      </p>
                     </li>
                   );
                 })}
               </ul>
-              
             </div>
           );
         })}
@@ -150,6 +167,7 @@ const Routines = () => {
       </div>
     </div>
   );
+  
 };
 
 export default Routines;

@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { PostActivities } from '../API/activities';
+import { createRoutine } from '../API/routines';
 import { useNavigate } from 'react-router-dom';
 import "../Styles/Update.css";
 
-const PostActivity = ({token, onClose}) => {
+const AddRoutine = ({ token, onClose }) => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  
+  const [goal, setGoal] = useState("");
+  const [isPublic, setIsPublic] = useState(null);
+
   return (
     <div className="update-post">
       <div className="updateHeader">
-        <h2>Add Activity</h2>
+        <h2>Add Routine</h2>
         <div className="close-button" onClick={onClose}>
           X
         </div>
@@ -19,11 +20,11 @@ const PostActivity = ({token, onClose}) => {
       <form className='updateForm'
         onSubmit={async (e) => {
           e.preventDefault();
-          await PostActivities(token, name, description);
-          navigate("/activities");
+          await createRoutine(token, name, goal, isPublic);
+          navigate("/routines");
         }}
       >
-        <label>Activity Name:</label>
+        <label>Routine Name:</label>
         <input
           type="text"
           value={name}
@@ -31,19 +32,26 @@ const PostActivity = ({token, onClose}) => {
           placeholder="Name"
           required
         />
-        
-        <label>Description:</label>
+        <label>Goal:</label>
         <textarea
           className="updateDescription"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          placeholder="Description"
+          value={goal}
+          onChange={(e) => setGoal(e.target.value)}
+          placeholder="Goal"
           required
         ></textarea>
-        <button type="submit">Create Activity</button>
+        <label>
+          Public:
+          <input
+            type="checkbox"
+            checked={isPublic}
+            onChange={(e) => setIsPublic(e.target.checked)}
+          />
+        </label>
+        <button type="submit">Create Routine</button>
       </form>
     </div>
   );
 };
 
-export default PostActivity;
+export default AddRoutine;

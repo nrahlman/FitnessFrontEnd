@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 
-const Login = ({ token, setToken, user, setUser }) => {
+const Login = ({ token, setToken, user, setUser, onClose  }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLogin, setIsLogin] = useState(true);
@@ -40,10 +40,13 @@ const Login = ({ token, setToken, user, setUser }) => {
   };
 
   return (
-    <div className="loginContainer">
+  
       <div className="loginCard">
         <div className="cardHeader">
           <div className="log">{isLogin ? "Log In" : "Register"}</div>
+          <div className="close-button-nav" onClick={onClose}>
+            X
+          </div>
         </div>
         {isLogin ? (
           <form className="loginForm" onSubmit={handleLogin}>
@@ -92,10 +95,11 @@ const Login = ({ token, setToken, user, setUser }) => {
               ? "Don't have an account? Create one"
               : "Already have an account? Log in"}
           </button>
+        <ToastContainer />
         </div>
       </div>
-      <ToastContainer />
-    </div>
+    
+    
   );
 };
 

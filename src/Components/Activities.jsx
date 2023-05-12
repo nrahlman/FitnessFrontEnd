@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import { DisplayActivities, links } from "../API/activities";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
+import PostActivity from "./PostActivity";
 import UpdateActivities from "./UpdateActivities";
 
-const Activities = ({token}) => {
+const Activities = ({ token }) => {
   const [activities, setActivities] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(24);
   const [searchQuery, setSearchQuery] = useState("");
+  const [showModal, setShowModal] = useState(false);
+
   const [modalActivityId, setModalActivityId] = useState(null);
 
   const navigate = useNavigate();
@@ -60,7 +63,7 @@ const Activities = ({token}) => {
           value={searchQuery}
           onChange={handleSearchChange}
         />
-        <button onClick={() => navigate(`/postActivity`)}>
+        <button onClick={() => setShowModal(true)}>
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -98,6 +101,17 @@ const Activities = ({token}) => {
                 token={token}
                 id={modalActivityId}
                 onClose={() => setModalActivityId(null)}
+              />
+            </div>
+          </div>
+        )}
+        {showModal && (
+          <div className="modal">
+            <div className="modal-content">
+              <PostActivity
+                token={token}
+                id={modalActivityId}
+                onClose={() => setShowModal(false)}
               />
             </div>
           </div>
