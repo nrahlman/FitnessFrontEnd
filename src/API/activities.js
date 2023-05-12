@@ -164,7 +164,9 @@ const links = [
   "/images/22.avif",
   "/images/23.webp",
   "/images/24.jpg",
-  "/images/25.jpg",
+  "/images/25.webp",
+  "/images/26.jpg",
+  "/images/27.jpg",
 ];
 
 // export the array for use in other modules

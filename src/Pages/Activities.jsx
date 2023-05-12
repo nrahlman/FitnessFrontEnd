@@ -94,7 +94,7 @@ const Activities = ({ token }) => {
       </div>
       <div className="pagination">
         {current > start && (
-          <button className="nextButton" onClick={() => setCurrentPage(current - 1)}>{ "<<" }</button>
+          <button className="nextButton" onClick={() => setCurrentPage(current - 1)}>{"<<"}</button>
         )}
         {Array.from({ length: end - start + 1 }, (_, i) => start + i).map(
           (number) => {
@@ -121,7 +121,7 @@ const Activities = ({ token }) => {
           }
         )}
         {current < end && (
-          <button className="nextButton" onClick={() => setCurrentPage(current + 1)}>{ ">>" }</button>
+          <button className="nextButton" onClick={() => setCurrentPage(current + 1)}>{">>"}</button>
         )}
       </div>
       <div className="activities">
@@ -154,15 +154,15 @@ const Activities = ({ token }) => {
               className="activity"
               key={activity.id}
               style={{
-                backgroundImage: `url(${links[Math.floor(Math.random() * 25)]
-                  })`,
+                backgroundImage: `url(${links[Math.floor(Math.random() * 27)]})`,
                 "--description": `"${activity.description} "`,
+                width: "20%",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
               }}
             >
               <p className="activityTitle">{activity.name}</p>
-              <button onClick={() => setModalActivityId(activity.id)}>
-                Edit
-              </button>
+              <button onClick={() => setModalActivityId(activity.id)}>Edit</button>
 
               <button
                 className="routineButton"
@@ -178,7 +178,7 @@ const Activities = ({ token }) => {
       </div>
       <div className="pagination">
         {current > start && (
-          <button className="nextButton" onClick={() => setCurrentPage(current - 1)}>{ "<<" }</button>
+          <button className="nextButton" onClick={() => setCurrentPage(current - 1)}>{"<<"}</button>
         )}
         {Array.from({ length: end - start + 1 }, (_, i) => start + i).map(
           (number) => {
@@ -205,7 +205,7 @@ const Activities = ({ token }) => {
           }
         )}
         {current < end && (
-          <button className="nextButton" onClick={() => setCurrentPage(current + 1)}>{ ">>" }</button>
+          <button className="nextButton" onClick={() => setCurrentPage(current + 1)}>{">>"}</button>
         )}
       </div>
     </div>
