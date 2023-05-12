@@ -20,6 +20,7 @@ const PostActivity = ({token, onClose}) => {
         onSubmit={async (e) => {
           e.preventDefault();
           await PostActivities(token, name, description);
+          onClose(false); 
           navigate("/activities");
         }}
       >
