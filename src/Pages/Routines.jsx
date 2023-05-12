@@ -107,7 +107,7 @@ const Routines = ({ token }) => {
       </div>
       <div className="pagination">
         {current > start && (
-          <button className="nextButton" onClick={() => setCurrentPage(current - 1)}>{ "<<" }</button>
+          <button className="nextButton" onClick={() => setCurrentPage(current - 1)}>{"<<"}</button>
         )}
         {Array.from({ length: end - start + 1 }, (_, i) => start + i).map(
           (number) => {
@@ -134,7 +134,7 @@ const Routines = ({ token }) => {
           }
         )}
         {current < end && (
-          <button className="nextButton" onClick={() => setCurrentPage(current + 1)}>{ ">>" }</button>
+          <button className="nextButton" onClick={() => setCurrentPage(current + 1)}>{">>"}</button>
         )}
       </div>
       <section className="routines">
@@ -158,7 +158,7 @@ const Routines = ({ token }) => {
                   {routine.name}{" "}
                   <span className="author">by: {routine.creatorName}</span>
                 </h2>
-             
+
               </div>
 
               <p>
@@ -174,10 +174,11 @@ const Routines = ({ token }) => {
                       className="activityRoutines"
                       key={activity.id}
                       style={{
-                        backgroundImage: `url(${
-                          links[Math.floor(Math.random() * 25)]
-                        })`,
-                        "--description": `"${activity.description}"`,
+                        backgroundImage: `url(${links[Math.floor(Math.random() * 27)]})`,
+                        "--description": `"${activity.description} "`,
+                        width: "25%",
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
                       }}
                     >
                       <p className="activityTitle">{activity.name}</p>
@@ -194,7 +195,7 @@ const Routines = ({ token }) => {
       </section>
       <div className="pagination">
         {current > start && (
-          <button className="nextButton" onClick={() => setCurrentPage(current - 1)}>{ "<<" }</button>
+          <button className="nextButton" onClick={() => setCurrentPage(current - 1)}>{"<<"}</button>
         )}
         {Array.from({ length: end - start + 1 }, (_, i) => start + i).map(
           (number) => {
@@ -221,7 +222,7 @@ const Routines = ({ token }) => {
           }
         )}
         {current < end && (
-          <button className="nextButton" onClick={() => setCurrentPage(current + 1)}>{ ">>" }</button>
+          <button className="nextButton" onClick={() => setCurrentPage(current + 1)}>{">>"}</button>
         )}
       </div>
     </div>

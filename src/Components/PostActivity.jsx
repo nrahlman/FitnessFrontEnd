@@ -23,7 +23,7 @@ const PostActivity = ({token, onClose}) => {
           await PostActivities(token, name, description);
           onClose(false); 
           navigate("/activities");
-          await PostActivities(token, name, descritpion);
+          await PostActivities(token, name, description);
           if(token){navigate("/activities");} //only navigate to activities if it is a success 
         }}
       >
