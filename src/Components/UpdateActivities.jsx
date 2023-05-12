@@ -10,6 +10,7 @@ const UpdateActivities = ({ token, id, onClose }) => {
     e.preventDefault();
     await PatchActivities(id, token, name, description);
     onClose(false);
+    
   };
 
   return (

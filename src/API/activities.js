@@ -61,13 +61,7 @@ export async function PostActivities(token, name, description) {
     }
   } catch (err) {
     // Display an error message to the user using toast
-    toast.error(err.message || "Log in failed. Please try again.", {
-      position: "top-center",
-      autoClose: 3000,
-      style: {
-        fontSize: "16px",
-      },
-    });
+    
   }
 }
 
