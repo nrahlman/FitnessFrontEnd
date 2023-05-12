@@ -158,9 +158,7 @@ const Routines = ({ token }) => {
                   {routine.name}{" "}
                   <span className="author">by: {routine.creatorName}</span>
                 </h2>
-                <button onClick={() => navigate(`/routines/${routine.id}`)}>
-                  Start Workout
-                </button>
+             
               </div>
 
               <p>
