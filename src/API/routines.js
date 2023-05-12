@@ -38,8 +38,17 @@ export const createRoutine = async (token, name, goal, isPublic) => {
       }),
     });
     const result = await response.json();
-    console.log(result);
-    return result;
+    if (!result.error) {
+      return result;
+    } else {
+      toast.error(result.message || "Registration failed. Please try again.", {
+        position: "bottom-center",
+        autoClose: 3000,
+        style: {
+          fontSize: "16px",
+        },
+      });
+    }
   } catch (err) {
     console.error(err);
     toast.error(err.message || 'Log in failed. Please try again.', {
@@ -72,8 +81,17 @@ export const updateRoutine = async (token, routineId) => {
       }),
     });
     const result = await response.json();
-    console.log(result);
-    return result;
+    if (!result.error) {
+      return result;
+    } else {
+      toast.error(result.message || "Registration failed. Please try again.", {
+        position: "bottom-center",
+        autoClose: 3000,
+        style: {
+          fontSize: "16px",
+        },
+      });
+    }
   } catch (err) {
     console.error(err);
   }
@@ -95,8 +113,17 @@ export const deleteRoutine = async (token, routineId) => {
       },
     });
     const result = await response.json();
-    console.log(result);
-    return result;
+    if (!result.error) {
+      return result;
+    } else {
+      toast.error(result.message || "Registration failed. Please try again.", {
+        position: "bottom-center",
+        autoClose: 3000,
+        style: {
+          fontSize: "16px",
+        },
+      });
+    }
   } catch (err) {
     console.error(err);
   }

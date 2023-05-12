@@ -21,6 +21,7 @@ const PostActivity = ({token, onClose}) => {
         onSubmit={async (e) => {
           e.preventDefault();
           await PostActivities(token, name, description);
+          onClose(false); 
           navigate("/activities");
           await PostActivities(token, name, descritpion);
           if(token){navigate("/activities");} //only navigate to activities if it is a success 

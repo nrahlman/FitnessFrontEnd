@@ -9,7 +9,8 @@ const UpdateActivities = ({ token, id, onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await PatchActivities(id, token, name, description);
-    onClose();
+    onClose(false);
+    
   };
 
   return (

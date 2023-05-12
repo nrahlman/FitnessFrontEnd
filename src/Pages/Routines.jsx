@@ -46,16 +46,35 @@ const Routines = ({ token }) => {
     indexOfLastItem
   );
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const handleClick = (event) => {
+    setCurrentPage(Number(event.target.id));
+  };
 
   const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(filteredRoutines.length / itemsPerPage); i++) {
+  for (
+    let i = 1;
+    i <= Math.ceil(filteredRoutines.length / itemsPerPage);
+    i++
+  ) {
     pageNumbers.push(i);
   }
 
   const updateRoutines = (newRoutine) => {
     setRoutines([...routines, newRoutine]);
   };
+
+
+  const getPageNumbers = () => {
+    const start = 1;
+    const end = Math.ceil(filteredRoutines.length / itemsPerPage);
+    const current = currentPage;
+    const before = currentPage - 1 > 0 ? currentPage - 1 : null;
+    const after =
+      currentPage + 2 <= end ? (currentPage === 1 ? currentPage + 2 : currentPage + 1) : null;
+    return { start, end, current, before, after };
+  };
+
+  const { start, end, current, before, after } = getPageNumbers();
 
   return (
     <div className="routinesContainer">
@@ -87,15 +106,36 @@ const Routines = ({ token }) => {
         </button>
       </div>
       <div className="pagination">
-        {pageNumbers.map((number) => (
-          <button
-            key={number}
-            onClick={() => paginate(number)}
-            className={currentPage === number ? "active" : ""}
-          >
-            {number}
-          </button>
-        ))}
+        {current > start && (
+          <button className="nextButton" onClick={() => setCurrentPage(current - 1)}>{ "<<" }</button>
+        )}
+        {Array.from({ length: end - start + 1 }, (_, i) => start + i).map(
+          (number) => {
+            if (
+              number === start ||
+              number === end ||
+              (number >= current - 1 && number <= current + 2)
+            ) {
+              return (
+                <button
+                  key={number}
+                  id={number}
+                  onClick={handleClick}
+                  className={`${currentPage === number ? "active" : ""} numberButton`}
+                >
+                  {number}
+                </button>
+              );
+            } else if (number === start + 1 || number === end - 1) {
+              return <span className="dots" key={number}>...</span>;
+            } else {
+              return null;
+            }
+          }
+        )}
+        {current < end && (
+          <button className="nextButton" onClick={() => setCurrentPage(current + 1)}>{ ">>" }</button>
+        )}
       </div>
       <section className="routines">
         {showAddRoutineModal && (
@@ -155,15 +195,36 @@ const Routines = ({ token }) => {
         })}
       </section>
       <div className="pagination">
-        {pageNumbers.map((number) => (
-          <button
-            key={number}
-            onClick={() => paginate(number)}
-            className={currentPage === number ? "active" : ""}
-          >
-            {number}
-          </button>
-        ))}
+        {current > start && (
+          <button className="nextButton" onClick={() => setCurrentPage(current - 1)}>{ "<<" }</button>
+        )}
+        {Array.from({ length: end - start + 1 }, (_, i) => start + i).map(
+          (number) => {
+            if (
+              number === start ||
+              number === end ||
+              (number >= current - 1 && number <= current + 2)
+            ) {
+              return (
+                <button
+                  key={number}
+                  id={number}
+                  onClick={handleClick}
+                  className={`${currentPage === number ? "active" : ""} numberButton`}
+                >
+                  {number}
+                </button>
+              );
+            } else if (number === start + 1 || number === end - 1) {
+              return <span className="dots" key={number}>...</span>;
+            } else {
+              return null;
+            }
+          }
+        )}
+        {current < end && (
+          <button className="nextButton" onClick={() => setCurrentPage(current + 1)}>{ ">>" }</button>
+        )}
       </div>
     </div>
   );

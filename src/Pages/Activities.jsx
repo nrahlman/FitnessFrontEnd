@@ -11,9 +11,7 @@ const Activities = ({ token }) => {
   const [itemsPerPage, setItemsPerPage] = useState(24);
   const [searchQuery, setSearchQuery] = useState("");
   const [showModal, setShowModal] = useState(false);
-
   const [modalActivityId, setModalActivityId] = useState(null);
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -52,6 +50,19 @@ const Activities = ({ token }) => {
     setCurrentPage(1); // reset current page when search query changes
   };
 
+  const getPageNumbers = () => {
+    const start = 1;
+    const end = Math.ceil(filteredActivities.length / itemsPerPage);
+    const current = currentPage;
+    const before = currentPage - 1 > 0 ? currentPage - 1 : null;
+    const after =
+      currentPage + 2 <= end ? (currentPage === 1 ? currentPage + 2 : currentPage + 1) : null;
+    return { start, end, current, before, after };
+  };
+
+  const { start, end, current, before, after } = getPageNumbers();
+
+
   return (
     <div className="activitiesContainer">
       <h1 className="activitiesBanner">Activities</h1>
@@ -82,16 +93,36 @@ const Activities = ({ token }) => {
         </button>
       </div>
       <div className="pagination">
-        {pageNumbers.map((number) => (
-          <button
-            key={number}
-            id={number}
-            onClick={handleClick}
-            className={currentPage === number ? "active" : ""}
-          >
-            {number}
-          </button>
-        ))}
+        {current > start && (
+          <button className="nextButton" onClick={() => setCurrentPage(current - 1)}>{ "<<" }</button>
+        )}
+        {Array.from({ length: end - start + 1 }, (_, i) => start + i).map(
+          (number) => {
+            if (
+              number === start ||
+              number === end ||
+              (number >= current - 1 && number <= current + 2)
+            ) {
+              return (
+                <button
+                  key={number}
+                  id={number}
+                  onClick={handleClick}
+                  className={`${currentPage === number ? "active" : ""} numberButton`}
+                >
+                  {number}
+                </button>
+              );
+            } else if (number === start + 1 || number === end - 1) {
+              return <span className="dots" key={number}>...</span>;
+            } else {
+              return null;
+            }
+          }
+        )}
+        {current < end && (
+          <button className="nextButton" onClick={() => setCurrentPage(current + 1)}>{ ">>" }</button>
+        )}
       </div>
       <div className="activities">
         {modalActivityId && (
@@ -123,9 +154,8 @@ const Activities = ({ token }) => {
               className="activity"
               key={activity.id}
               style={{
-                backgroundImage: `url(${
-                  links[Math.floor(Math.random() * 25)]
-                })`,
+                backgroundImage: `url(${links[Math.floor(Math.random() * 25)]
+                  })`,
                 "--description": `"${activity.description} "`,
               }}
             >
@@ -147,16 +177,36 @@ const Activities = ({ token }) => {
         })}
       </div>
       <div className="pagination">
-        {pageNumbers.map((number) => (
-          <button
-            key={number}
-            id={number}
-            onClick={handleClick}
-            className={currentPage === number ? "active" : ""}
-          >
-            {number}
-          </button>
-        ))}
+        {current > start && (
+          <button className="nextButton" onClick={() => setCurrentPage(current - 1)}>{ "<<" }</button>
+        )}
+        {Array.from({ length: end - start + 1 }, (_, i) => start + i).map(
+          (number) => {
+            if (
+              number === start ||
+              number === end ||
+              (number >= current - 1 && number <= current + 2)
+            ) {
+              return (
+                <button
+                  key={number}
+                  id={number}
+                  onClick={handleClick}
+                  className={`${currentPage === number ? "active" : ""} numberButton`}
+                >
+                  {number}
+                </button>
+              );
+            } else if (number === start + 1 || number === end - 1) {
+              return <span className="dots" key={number}>...</span>;
+            } else {
+              return null;
+            }
+          }
+        )}
+        {current < end && (
+          <button className="nextButton" onClick={() => setCurrentPage(current + 1)}>{ ">>" }</button>
+        )}
       </div>
     </div>
   );
