@@ -1,44 +1,26 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Activities from "./Activities";
-import Home from "./Home";
+import Activities from "../Pages/Activities";
+import Home from "../Pages/Home";
 import LogInRegister from "./LogInRegister";
-import MyRoutines from "./MyRoutines";
+import MyRoutines from "../Pages/MyRoutines";
 import PostActivity from "./PostActivity";
-import Routines from "./Routines";
+import Routines from "../Pages/Routines";
 import "../App.css";
-import UpdateActivities from "./UpdateActivities";
+
 
 const RRoutes = ({ token, setToken, user, setUser }) => {
   return (
     <div className="body">
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Home
-              token={token}
-         
-            />
-          }
-        ></Route>
+        <Route path="/" element={<Home token={token} />}></Route>
         <Route
           path="/activities"
-          element={
-            <Activities
-              token={token}
-             
-            />
-          }
+          element={<Activities token={token} />}
         ></Route>
         <Route
           path="/postActivity"
-          element={
-            <PostActivity
-              token={token}
-          
-            />
-          }
+          element={<PostActivity token={token} />}
         ></Route>
 
         <Route
@@ -60,18 +42,12 @@ const RRoutes = ({ token, setToken, user, setUser }) => {
               setToken={setToken}
               user={user}
               setUser={setUser}
-       
             />
           }
         ></Route>
         <Route
           path="/routines"
-          element={
-            <Routines
-              token={token}
-            
-            />
-          }
+          element={<Routines token={token} />}
           state={{}}
         />
       </Routes>

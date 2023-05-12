@@ -1,84 +1,116 @@
+/**
+ * The base URL for the FitnessTrac API
+ * @type {string}
+ */
 const BASE_URL= "https://fitnesstrac-kr.herokuapp.com/api"
 
+/**
+ * Fetches all activities from the FitnessTrac API
+ * @returns {Promise<Array>} - An array of activity objects
+ */
 export async function DisplayActivities (){
     try {
-      const response = await fetch(`${BASE_URL}/activities`, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-  
-      const result = await response.json();
-  
-      console.log(result);
-      return result
-    } catch (err) {
-      console.error(err);
-    }
-  }
+        const response = await fetch(`${BASE_URL}/activities`, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
 
-  // @param {string} token
- 
-  export async function PostActivities (token, name, description){
-    try {
-      const response = await fetch(`${BASE_URL}/activities`, {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          name,
-          description
-        }) 
-      });
-  
-      const result = await response.json();
-  
-      console.log(result);
-      return result
+        const result = await response.json();
+
+        console.log(result);
+        return result
     } catch (err) {
-      console.error(err);
+        console.error(err);
     }
-  }
-  export async function PatchActivities (Id, token, name, description){
+}
+
+/**
+ * Posts a new activity to the FitnessTrac API
+ * @param {string} token - The user's access token
+ * @param {string} name - The name of the activity
+ * @param {string} description - The description of the activity
+ * @returns {Promise<Object>} - The newly created activity object
+ */
+export async function PostActivities (token, name, description){
+    try {
+        const response = await fetch(`${BASE_URL}/activities`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                name,
+                description
+            }) 
+        });
+
+        const result = await response.json();
+
+        console.log(result);
+        return result
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+/**
+ * Updates an existing activity in the FitnessTrac API
+ * @param {number} Id - The ID of the activity to update
+ * @param {string} token - The user's access token
+ * @param {string} name - The updated name of the activity
+ * @param {string} description - The updated description of the activity
+ * @returns {Promise<Object>} - The updated activity object
+ */
+export async function PatchActivities (Id, token, name, description){
     console.log(Id, token, name, description)
     try {
-      const response = await fetch(`${BASE_URL}/activities/${Id}`, {
-        headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-        },
-        method: "PATCH",
-        body: JSON.stringify({
-          name,
-          description
-        })
-      });
-  
+        const response = await fetch(`${BASE_URL}/activities/${Id}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            method: "PATCH",
+            body: JSON.stringify({
+                name,
+                description
+            })
+        });
+
         const result = await response.json();
         console.log(result);
         return result
-      } catch (err) {
-      console.error(err);
-      }
-  }
-  export async function GetRoutines (Id){
-    try {
-      const response = await fetch(`${BASE_URL}/activities/${Id}/routines`, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const result = await response.json();
-      console.log(result);
-      return result
     } catch (err) {
-      console.error(err);
+        console.error(err);
     }
-  }
+}
+
+/**
+ * Fetches all routines associated with an activity from the FitnessTrac API
+ * @param {number} Id - The ID of the activity
+ * @returns {Promise<Array>} - An array of routine objects associated with the activity
+ */
+export async function GetRoutines (Id){
+    try {
+        const response = await fetch(`${BASE_URL}/activities/${Id}/routines`, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        const result = await response.json();
+        console.log(result);
+        return result
+    } catch (err) {
+        console.error(err);
+    }
+}
 
 
+/**
+ * An array of image links for use in other modules
+ * @type {Array<string>}
+ */
   const links = [
     '/images/1.jpg',
     '/images/2.jpg',

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { getPublicRoutines } from "../API/routines";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import "../Styles/Routines.css";
 import { GetRoutines, links } from "../API/activities";
-import AddRoutine from "./AddRoutine";
+import AddRoutine from "../Components/AddRoutine";
+import "../Styles/Routines.css";
 
 const Routines = ({ token }) => {
   const location = useLocation();
@@ -109,7 +109,7 @@ const Routines = ({ token }) => {
             </div>
           </div>
         )}
-       
+
         {currentItems.map((routine) => {
           return (
             <div className="routine" key={routine.id}>
@@ -122,12 +122,12 @@ const Routines = ({ token }) => {
                   Start Workout
                 </button>
               </div>
-  
+
               <p>
                 {" "}
                 <span className="bold"> Goal:</span> {routine.goal}
               </p>
-  
+
               <h4>Exercises:</h4>
               <ul className="exercises">
                 {routine.activities.map((activity) => {
@@ -167,7 +167,6 @@ const Routines = ({ token }) => {
       </div>
     </div>
   );
-  
 };
 
 export default Routines;

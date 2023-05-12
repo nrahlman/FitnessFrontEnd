@@ -1,5 +1,6 @@
 import React from "react";
 import "../Styles/Landing.css";
+
 const Home = () => {
   return (
     <div className="homeContainer">

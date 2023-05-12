@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { PatchActivities } from "../API/activities";
-
 import "../Styles/Update.css";
 
 const UpdateActivities = ({ token, id, onClose }) => {

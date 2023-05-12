@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { DisplayActivities, links } from "../API/activities";
 import { useNavigate } from "react-router-dom";
+import PostActivity from "../Components/PostActivity";
+import UpdateActivities from "../Components/UpdateActivities";
 import "../App.css";
-import PostActivity from "./PostActivity";
-import UpdateActivities from "./UpdateActivities";
 
 const Activities = ({ token }) => {
   const [activities, setActivities] = useState([]);

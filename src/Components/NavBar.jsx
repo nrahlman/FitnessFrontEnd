@@ -1,8 +1,8 @@
 import React, { useReducer, useState } from "react";
 import { Link } from "react-router-dom";
-import "../App.css";
 import { logout } from "../API/user";
 import Login from "./LogInRegister";
+import "../App.css";
 
 const NavBar = ({ user, setToken, setUser }) => {
   const [activeLink, setActiveLink] = useState("");
