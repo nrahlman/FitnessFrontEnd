@@ -1,8 +1,11 @@
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 /**
  * The base URL for the FitnessTrac API
  * @type {string}
  */
 const BASE_URL= "https://fitnesstrac-kr.herokuapp.com/api"
+
 
 /**
  * Fetches all activities from the FitnessTrac API
@@ -46,12 +49,23 @@ export async function PostActivities (token, name, description){
             }) 
         });
 
+        
         const result = await response.json();
-
-        console.log(result);
-        return result
+        if (!result.error) {
+         return result
+        }       
+       else{
+        toast.error(result.message || "Registration failed. Please try again.", {
+          position: "bottom-center",
+          autoClose: 3000,
+          style: {
+            fontSize: "16px",
+          },
+        });
+       }
     } catch (err) {
-        console.error(err);
+      console.error(err);
+     
     }
 }
 
