@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { PostActivities } from '../API/activities';
 import { useNavigate } from 'react-router-dom';
 import "../Styles/Update.css";
+import { ToastContainer } from 'react-toastify';
 
 const PostActivity = ({token, onClose}) => {
   const navigate = useNavigate();
@@ -22,6 +23,8 @@ const PostActivity = ({token, onClose}) => {
           await PostActivities(token, name, description);
           onClose(false); 
           navigate("/activities");
+          await PostActivities(token, name, descritpion);
+          if(token){navigate("/activities");} //only navigate to activities if it is a success 
         }}
       >
         <label>Activity Name:</label>
@@ -43,6 +46,9 @@ const PostActivity = ({token, onClose}) => {
         ></textarea>
         <button type="submit">Create Activity</button>
       </form>
+      <div>
+      <ToastContainer />
+      </div>
     </div>
   );
 };

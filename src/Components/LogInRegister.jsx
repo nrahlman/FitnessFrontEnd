@@ -61,7 +61,7 @@ const Login = ({ setToken, onClose }) => {
             value={password}
             type="password"
             placeholder="Password"
-            className="password"
+            className="username"
           ></input>
           <button type="submit" className="loginButton">
             Login

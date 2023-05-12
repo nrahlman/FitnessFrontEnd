@@ -44,9 +44,9 @@
   position: relative;
   font-family: "Pathway Gothic One", Arial, sans-serif !important;
   letter-spacing: 1px;
-  /* text-transform: uppercase; */
   padding: 0px 30px;
-  font-weight: bold;
+  font-weight: bolder;
+  font-size: 20px;
 }
 .Navbar a {
   cursor: pointer;
@@ -147,6 +147,7 @@ button:hover {
   background-color: #fc4c02;
   color: white;
 }
+
 .routineButton{
   left: 0;
   width: 50%
@@ -249,6 +250,7 @@ button:hover {
 .pagination {
   margin: 3%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 5px;
 }
@@ -262,6 +264,16 @@ button:hover {
 .pagination button.active {
   background-color: #fc4c02;
   color: white;
+}
+.dots{
+  align-self: flex-end;
+  padding-bottom: 2px;
+}
+.numberButton:hover {
+  color: #fc4c02;
+}
+.nextButton:hover {
+  color: #fc4c02;
 }
 .read-the-docs {
   color: #888;
