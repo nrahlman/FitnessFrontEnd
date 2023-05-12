@@ -51,7 +51,14 @@ export async function PostActivities (token, name, description){
         console.log(result);
         return result
     } catch (err) {
-        console.error(err);
+      console.error(err);
+      toast.error(err.message || 'Log in failed. Please try again.', {
+        position: "bottom-center",
+        autoClose: 3000,
+        style: {
+          fontSize: '16px'
+        }
+      });
     }
 }
 

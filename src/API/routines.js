@@ -1,4 +1,5 @@
 const BASE_URL = `https://fitnesstrac-kr.herokuapp.com/api`;
+import { toast } from 'react-toastify';
 
 /**
  * Retrieve all public routines from the API.
@@ -41,6 +42,13 @@ export const createRoutine = async (token, name, goal, isPublic) => {
     return result;
   } catch (err) {
     console.error(err);
+    toast.error(err.message || 'Log in failed. Please try again.', {
+      position: "bottom-center",
+      autoClose: 3000,
+      style: {
+        fontSize: '16px'
+      }
+    });
   }
 };
 
