@@ -21,6 +21,7 @@ const AddRoutine = ({ token, onClose }) => {
         onSubmit={async (e) => {
           e.preventDefault();
           await createRoutine(token, name, goal, isPublic);
+          onClose(false);
           navigate("/routines");
         }}
       >

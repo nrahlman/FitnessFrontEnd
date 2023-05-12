@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { loginUser, registerUser } from "../API/user";
-import { ToastContainer } from "react-toastify";
+
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import "../Styles/Login.css";
@@ -18,6 +18,7 @@ const Login = ({ setToken, onClose }) => {
     setToken(token);
     setUsername("");
     setPassword("");
+    onClose(false)
   };
 
   const handleLogin = async (e) => {
@@ -27,8 +28,10 @@ const Login = ({ setToken, onClose }) => {
     setToken(token);
     setUsername("");
     setPassword("");
+
     if (token) {
       navigate("/myRoutines");
+      onClose(false);
     }
   };
 
@@ -91,7 +94,7 @@ const Login = ({ setToken, onClose }) => {
             ? "Don't have an account? Create one"
             : "Already have an account? Log in"}
         </button>
-        <ToastContainer />
+      
       </div>
     </div>
   );
